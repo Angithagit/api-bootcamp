@@ -1,0 +1,90 @@
+[
+  {
+    "testCaseId": "TC_001",
+    "scenarioType": "Positive",
+    "endpoint": "users/username/{userFirstName}",
+    "method": "GET",
+    "userFirstName": "Numpy",
+    "expectedStatusCode": 200,
+    "expectedStatusLine": "OK"
+  },
+  {
+    "testCaseId": "TC_002",
+    "scenarioType": "Negative",
+    "endpoint": "users/username",
+    "method": "GET",
+    "userFirstName": "kalyani",
+    "expectedStatusCode": 404,
+    "expectedStatusLine": "Not Found"
+  },
+  {
+    "testCaseId": "TC_003",
+    "scenarioType": "Negative",
+    "endpoint": "users/username/{userFirstName}",
+    "method": "GET",
+    "userFirstName": "abcd",
+    "expectedStatusCode": 404,
+    "expectedStatusLine": "Not Found",
+    "expectedStatusmessage": "User with userFirstName abcd not found!"
+  },
+  {
+    "testCaseId": "TC_004",
+    "scenarioType": "Negative",
+    "endpoint": "users/username/{userFirstName}",
+    "method": "GET",
+    "userFirstName": "12234",
+    "expectedStatusCode": 404,
+    "expectedStatusLine": "Not Found",
+    "expectedStatusmessage": "User with userFirstName 12234 not found!"
+  },
+  {
+    "testCaseId": "TC_005",
+    "scenarioType": "Negative",
+    "method": "GET",
+    "endpoint": "users/username/{userFirstName}", 
+    "userFirstName": "kalyani123",
+    "expectedStatusCode": 404,
+    "expectedStatusLine": "Not Found",
+    "expectedStatusmessage": "User with userFirstName kalyani123 not found!"
+  },
+  {
+    "testCaseId": "TC_006",
+    "scenarioType": "Negative",
+    "method": "GET",
+    "endpoint": "users/username/{userFirstName}", 
+    "userFirstName": "kal@yani",
+    "expectedStatusCode": 404,
+    "expectedStatusLine": "Not Found",
+    "expectedStatusmessage": "User with userFirstName kal@yani not found!"
+  },
+  {
+    "testCaseId": "TC_007",
+    "scenarioType": "Negative",
+    "method": "POST",
+    "endpoint": "users/username/{userFirstName}", 
+    "userFirstName": "kalyani",
+    "expectedStatusCode": 405,
+    "expectedStatusLine": "Method Not Allowed",
+    "expectedStatusmessage": ""
+  },
+  {
+    "testCaseId": "TC_008",
+    "scenarioType": "Negative",
+    "method": "GET",
+    "endpoint": "", 
+    "userFirstName": "",
+    "expectedStatusCode": 404,
+    "expectedStatusLine": "Not Found",
+    "expectedStatusmessage": ""
+  },
+  {
+    "testCaseId": "TC_009",
+    "scenarioType": "Negative",
+    "method": "GET",
+    "endpoint": "users/username/{userFirstName}", 
+    "userFirstName": "",
+    "expectedStatusCode": 401,
+    "expectedStatusLine": "HTTP/1.1 401 Unauthorized"
+    
+  }
+]

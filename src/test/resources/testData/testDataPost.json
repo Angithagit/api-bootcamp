@@ -1,0 +1,64 @@
+[
+	{
+	    "testCaseId": "TC_001",
+	    "scenarioType": "Negative",
+	    "method": "PUT",
+	    "endpoint": "updateuser/{userId}", 
+	    "expectedStatusCode": 401,
+	    "expectedStatusLine": "HTTP/1.1 401 Unauthorized",
+		"userFirstName":"team",
+		        "userLastName": "apibootcamp",
+		        "userContactNumber": 0987123456,
+		        "userEmailId": "bootcamp@gmail.com",
+		        "userAddress": {
+		            "plotNumber": "pl-22",
+		            "street": "local st",
+		            "state": "gh",
+		            "country": "US",
+		            "zipCode": 24680
+		        }
+	    
+	  },
+	  
+	  {
+	  	    "testCaseId": "TC_002",
+	  	    "scenarioType": "Negative",
+	  	    "method": "PUT",
+	  	    "endpoint": "updateuser/{userId}", 
+	  	    "expectedStatusCode": 401,
+	  	    "expectedStatusLine": "HTTP/1.1 401 Unauthorized",
+	  		"userFirstName":"team",
+	  		        "userLastName": "apibootcamp",
+	  		        "userContactNumber": 0987123456,
+	  		        "userEmailId": "bootcamp@gmail.com",
+	  		        "userAddress": {
+	  		            "plotNumber": "pl-22",
+	  		            "street": "local st",
+	  		            "state": "gh",
+	  		            "country": "US",
+	  		            "zipCode": 24680
+	  		        }
+	  	    
+	  	  },
+	
+    { 	"testCaseId": "TC_003",
+	    "scenarioType": "Positive",
+	    "endpoint": "updateuser/{userId}",
+	    "method": "PUT",
+		"expectedStatusCode": 200,
+	    "expectedStatusLine": "OK",
+        "userFirstName":"team",
+        "userLastName": "apibootcamp",
+        "userContactNumber": 0987123456,
+        "userEmailId": "bootcamp@gmail.com",
+        "userAddress": {
+            "plotNumber": "pl-22",
+            "street": "local st",
+            "state": "gh",
+            "country": "US",
+            "zipCode": 24680
+        }
+		
+    },
+	
+]
