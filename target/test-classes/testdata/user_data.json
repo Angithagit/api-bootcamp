@@ -1,0 +1,64 @@
+[ 
+  {
+	"scenarioType": "POSITIVE",
+	"userFirstName": "maha",
+    "userLastName": "mahaone",
+	"userContactNumber": 2656487574,
+    "userEmailId"      : "maha.team4@example.com",
+	"expectedStatusCode": 201,
+    "userAddress": {
+      "plotNumber": "E-42E",
+      "street": "Main Street",
+      "state": "AL",
+      "country": "USA",
+      "zipCode": 10001
+	 }
+  },
+  {
+  	"scenarioType": "POSITIVE",
+      "userFirstName": "four",
+      "userLastName": "one",
+      "userContactNumber": 5879658246,
+      "userEmailId": "test04.siri358@example.com",
+	  "expectedStatusCode": 409,
+      "userAddress": {
+        "plotNumber": "D-42E",
+        "street": "Main Street",
+        "state": "NYAL",
+        "country": "USA",
+        "zipCode": 10001
+	}
+    },
+  {
+  	"scenarioType": "NEGATIVE",
+      "userFirstName": "chitti",
+      "userLastName": "Smithoneone1",
+      "userContactNumber": 5912658728,
+      "userEmailId": "tmjh98.sm@example.com",
+	  "expectedStatusCode": 400,
+      "userAddress": {
+        "plotNumber": "B-42E",
+        "street": "Main Street",
+        "state": "NY",
+        "country": "USA",
+        "zipCode": 10001
+		
+      }
+    },
+	{
+	 	"scenarioType": "NEGATIVE",
+	     "userFirstName": "chitti1",
+	     "userLastName": "Smithonetwo",
+	     "userContactNumber": 6787658778,
+	     "userEmailId": "tmjh11.sm@example.com",
+		 "expectedStatusCode": 400,
+	     "userAddress": {
+	       "plotNumber": "B-42E",
+	       "street": "Main Street",
+	       "state": "NY",
+	       "country": "USA",
+	       "zipCode": 10001
+		   
+	     }
+	   }
+]

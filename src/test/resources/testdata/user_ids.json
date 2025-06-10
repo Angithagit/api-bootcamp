@@ -1,0 +1,16 @@
+[
+  {
+    "scenarioType": "POSITIVE",
+    "expectedStatusCode": 200
+  },
+  {
+    "scenarioType": "NEGATIVE",
+    "userId": 99999,
+    "expectedStatusCode": 404
+  },
+  {
+    "scenarioType": "NEGATIVE",
+    "userId": null,
+    "expectedStatusCode": 404
+  }
+]

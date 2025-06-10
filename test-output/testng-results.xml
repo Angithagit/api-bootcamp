@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="7" passed="7" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-06-09T13:23:51 EDT" name="Suite" finished-at="2025-06-09T13:23:59 EDT" duration-ms="8226">
+    <groups>
+    </groups>
+    <test started-at="2025-06-09T13:23:51 EDT" name="Test" finished-at="2025-06-09T13:23:59 EDT" duration-ms="8226">
+      <class name="tests.CreateUserTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.CreateUserTest@752325ad]" started-at="2025-06-09T13:23:51 EDT" name="setup" finished-at="2025-06-09T13:23:52 EDT" duration-ms="1228" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="createUserTest(java.util.Map)[pri:0, instance:tests.CreateUserTest@752325ad]" started-at="2025-06-09T13:23:52 EDT" name="createUserTest" data-provider="createUserData" finished-at="2025-06-09T13:23:57 EDT" duration-ms="4571" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{userFirstName=maha, userLastName=mahaone, userContactNumber=2656487574, userEmailId=maha.team4@example.com, userAddress={plotNumber=E-42E, street=Main Street, state=AL, country=USA, zipCode=10001}}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createUserTest -->
+        <test-method signature="createUserTest(java.util.Map)[pri:0, instance:tests.CreateUserTest@752325ad]" started-at="2025-06-09T13:23:57 EDT" name="createUserTest" data-provider="createUserData" finished-at="2025-06-09T13:23:57 EDT" duration-ms="304" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{userFirstName=four, userLastName=one, userContactNumber=5879658246, userEmailId=test04.siri358@example.com, userAddress={plotNumber=D-42E, street=Main Street, state=NYAL, country=USA, zipCode=10001}}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createUserTest -->
+        <test-method signature="createUserTest(java.util.Map)[pri:0, instance:tests.CreateUserTest@752325ad]" started-at="2025-06-09T13:23:57 EDT" name="createUserTest" data-provider="createUserData" finished-at="2025-06-09T13:23:58 EDT" duration-ms="266" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{userFirstName=chitti, userLastName=Smithoneone1, userContactNumber=5912658728, userEmailId=tmjh98.sm@example.com, userAddress={plotNumber=B-42E, street=Main Street, state=NY, country=USA, zipCode=10001}}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createUserTest -->
+        <test-method signature="createUserTest(java.util.Map)[pri:0, instance:tests.CreateUserTest@752325ad]" started-at="2025-06-09T13:23:58 EDT" name="createUserTest" data-provider="createUserData" finished-at="2025-06-09T13:23:58 EDT" duration-ms="269" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{userFirstName=chitti1, userLastName=Smithonetwo, userContactNumber=6787658778, userEmailId=tmjh11.sm@example.com, userAddress={plotNumber=B-42E, street=Main Street, state=NY, country=USA, zipCode=10001}}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createUserTest -->
+      </class> <!-- tests.CreateUserTest -->
+      <class name="tests.GetUserByIdTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.GetUserByIdTest@1ff4931d]" started-at="2025-06-09T13:23:58 EDT" name="setup" finished-at="2025-06-09T13:23:58 EDT" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="getUserByIdTest(java.util.Map)[pri:0, instance:tests.GetUserByIdTest@1ff4931d]" started-at="2025-06-09T13:23:58 EDT" name="getUserByIdTest" data-provider="getUserByIdData" finished-at="2025-06-09T13:23:58 EDT" duration-ms="300" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{scenarioType=POSITIVE, expectedStatusCode=200}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getUserByIdTest -->
+        <test-method signature="getUserByIdTest(java.util.Map)[pri:0, instance:tests.GetUserByIdTest@1ff4931d]" started-at="2025-06-09T13:23:58 EDT" name="getUserByIdTest" data-provider="getUserByIdData" finished-at="2025-06-09T13:23:58 EDT" duration-ms="263" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{scenarioType=NEGATIVE, userId=99999, expectedStatusCode=404}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getUserByIdTest -->
+        <test-method signature="getUserByIdTest(java.util.Map)[pri:0, instance:tests.GetUserByIdTest@1ff4931d]" started-at="2025-06-09T13:23:58 EDT" name="getUserByIdTest" data-provider="getUserByIdData" finished-at="2025-06-09T13:23:59 EDT" duration-ms="326" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{scenarioType=NEGATIVE, userId=null, expectedStatusCode=404}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getUserByIdTest -->
+      </class> <!-- tests.GetUserByIdTest -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>
