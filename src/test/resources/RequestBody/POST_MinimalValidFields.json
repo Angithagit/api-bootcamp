@@ -1,0 +1,13 @@
+{
+  "userFirstName": "mni",
+  "userLastName": "us",
+  
+  
+  "creationTime": "2025-06-07T19:08:28.470Z",
+  "lastModTime": "2025-06-07T19:08:28.470Z",
+  "userAddress": {
+    "plotNumber": "plot-1",
+  
+    "zipCode": 12345
+  }
+}

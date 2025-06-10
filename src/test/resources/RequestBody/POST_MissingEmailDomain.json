@@ -1,0 +1,15 @@
+{
+  "userFirstName": "Mani",
+  "userLastName": "Moous",
+  "userContactNumber": 9940099923,
+  "userEmailId": "lindas.sd@",
+  "creationTime": "2025-06-07T19:08:28.470Z",
+  "lastModTime": "2025-06-07T19:08:28.470Z",
+  "userAddress": {
+    "plotNumber": "plot-1",
+    "street": "Main",
+    "state": "CA",
+    "country": "USA",
+    "zipCode": 12345
+  }
+}
