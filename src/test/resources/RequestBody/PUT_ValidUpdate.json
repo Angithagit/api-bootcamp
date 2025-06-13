@@ -1,0 +1,17 @@
+{
+"userFirstName":  "Thomas",
+ "userLastName":  "Sebastian" ,     
+ "userContactNumber": 4910358300,
+ "userEmailId": "tom@gmail.com",
+
+"userAddress": {
+   "plotNumber": "plot-1",
+   "street": "newbridge",
+   "state": "CA",
+    "country": "USA",
+   "zipCode": "12345"
+ }
+}
+
+
+
