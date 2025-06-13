@@ -1,0 +1,66 @@
+[
+  {
+    "scenarioType": "POSITIVE",
+    "expectedStatusCode": 200,
+    "expectedStatusLine": "OK",
+    "userFirstName": "rajatwo",
+    "userLastName": "srinivas",
+    "userContactNumber": 2589768125,
+    "userEmailId": "rajatwo.test04@example.com",
+    "userAddress": {
+      "plotNumber": "AC-22B",
+      "street": "Main St",
+      "state": "LA",
+      "country": "USA",
+      "zipCode": 90001
+    }
+  },
+  {
+      "scenarioType": "NEGATIVE",
+      "expectedStatusCode": 400,
+      "expectedStatusLine": "Bad Request",
+      "userFirstName": "",  
+      "userLastName": "Doeone",
+      "userContactNumber": 2555555564,
+      "userEmailId": "johnkk.doe@example.com",
+      "userAddress": {
+        "plotNumber": "101",
+        "street": "Main St",
+        "state": "CA",
+        "country": "USA",
+        "zipCode": 90001
+      }
+    },
+    {
+      "scenarioType": "NEGATIVE",
+      "expectedStatusCode": 400,
+      "expectedStatusLine": "Bad Request",
+      "userFirstName": "Aliceone",
+      "userLastName": "Johnson",
+      "userContactNumber": 1112222545,
+      "userEmailId": "alicekk.johnson@example.com",
+      "userAddress": {
+        "plotNumber": "Al-22B",
+        "street": "Third St",
+        "state": "TX",
+        "country": "USA",
+        "zipCode": 73301
+      }
+    },
+	{
+	    "scenarioType": "NEGATIVE",
+	    "expectedStatusCode": 400,
+	    "expectedStatusLine": "Bad Request",
+	    "userFirstName": "Alice",
+	    "userLastName": "Johnson",
+	    "userContactNumber": 55566677,
+	    "userEmailId": "alice.johnson@example.com",
+	    "userAddress": {
+	      "plotNumber": "Al-22B",
+	      "street": "Third St",
+	      "state": "TX",
+	      "country": "USA",
+	      "zipCode": 73301
+	    }
+	  }
+]

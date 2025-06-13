@@ -1,0 +1,26 @@
+[
+   {
+	"scenarioType": "Positive",
+	"expectedStatusCode": 200,
+	"expectedMessage": "User is deleted successfully"
+	},
+  {
+    "scenarioType": "Negative",
+    "userFirstName":"sship", 
+    "expectedStatusCode": 404,
+    "expectedMessage": "User does not exist with name 'sship'"
+  },
+  {
+    "scenarioType": "Negative",
+	"userFirstName": "" ,
+    "expectedStatusCode": 400,
+    "expectedMessage": null
+  },
+  {
+    "scenarioType": "Negative",
+	"userFirstName":"srar@#$", 
+    "expectedStatusCode": 404,
+    "expectedMessage": "User does not exist with name 'srar@#$'"
+  }
+    
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "scenarioType": "POSITIVE",
+    "expectedStatusCode": 200,
+    "expectedMessage": "User updated successfully",
+    "userFirstName": "updatedrajatwo"
+  },
+  {
+    "scenarioType": "NEGATIVE",
+    "expectedStatusCode": 404,
+    "expectedMessage": "User not found with id 99999",
+    "userFirstName": "NonExistentUser"
+  },
+  {
+    "scenarioType": "NEGATIVE",
+    "expectedStatusCode": 400,
+    "expectedMessage": "Required field 'userFirstName' is missing",
+    "userLastName": "maharaja"
+  },
+  {
+    "scenarioType": "NEGATIVE",
+    "expectedStatusCode": 400,
+    "expectedMessage": "Invalid data",
+    "userFirstName": "@#Invalid!"
+  }
+]

@@ -1,6 +1,5 @@
 package tests;
 
-
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 import java.util.Map;
@@ -13,127 +12,73 @@ import dataproviders.BaseDataProvider;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import utils.UserContext;
-public class CreateUserTest extends BaseTest{
-			
+import static org.hamcrest.Matchers.equalTo;
+
+public class CreateUserTest extends BaseTest {
+
 	@Test(dataProvider = "createUserData", dataProviderClass = BaseDataProvider.class)
 	public void createUserTest(Map<String, Object> user) {
-	    String scenarioType = (String) user.get("scenarioType");
-	    int expectedStatus = (int) user.get("expectedStatusCode");
+		String scenarioType = (String) user.get("scenarioType");
+		int expectedStatus = (int) user.get("expectedStatusCode");
+		String userfirstname = (String) user.get("userFirstName");
 
-	    // Prepare payload
-	    Map<String, Object> userAddress = (Map<String, Object>) user.get("userAddress");
-	    user.put("userAddress", userAddress);
+		// Prepare payload
+		Map<String, Object> userAddress = (Map<String, Object>) user.get("userAddress");
+		user.put("userAddress", userAddress);
 
-	    // Remove test-only data before sending the request
-	    user.remove("scenarioType");
-	    user.remove("expectedStatusCode");
+		// Remove test-only data before sending the request
 
-	    Response response = authrequest.given()
-	        .log().all()  // Log full request
-	        .contentType(ContentType.JSON)
-	        .body(user)
-	        .when()
-	        .post("/createusers");
-	    
-	    System.out.println("Response: " + response.asString());
+		user.remove("scenarioType");
+		user.remove("expectedStatusCode");
 
-	    int actualStatusCode = response.getStatusCode();
-	    System.out.println("Expected: " + expectedStatus + ", Actual: " + actualStatusCode);
+		Response response = authrequest.given().log().all() // Log full request
+				.contentType(ContentType.JSON).body(user).when().post("/createusers");
 
-	    //status code validation
-        Assert.assertEquals(actualStatusCode, expectedStatus,"status code mismatch");
-        
-     // ✅ Header Validation
-        Assert.assertEquals(response.getHeader("Content-Type"), "application/json", "❌ Content-Type mismatch");
-        Assert.assertNotNull(response.getHeader("Server"), "❌ Server header missing");
+		System.out.println("Response: " + response.asString());
 
+		int actualStatusCode = response.getStatusCode();
+		System.out.println("Expected: " + expectedStatus + ", Actual: " + actualStatusCode);
 
-	    try {
-	        response.then()
-	            .log().all()
-	            .statusCode(expectedStatus);
+		// status code validation
+		Assert.assertEquals(actualStatusCode, expectedStatus, "status code mismatch");
 
-	        if (expectedStatus == 201 && "POSITIVE".equalsIgnoreCase(scenarioType)) {
-	            // schema/datatype Validation
-	            response.then().body(matchesJsonSchemaInClasspath("schemas/schema.json"));
-	            // Get userId from response and save it
-	            int userId = response.jsonPath().getInt("userId");
-	            System.out.println("✅ Created userId: " + userId);
-	            UserContext.setCreatedUserId(userId); // this should store it for use in GET test
-	        }
-	    } catch (AssertionError e) {
-	        System.err.println("❌ Test failed: Expected " + expectedStatus + " but got " + actualStatusCode);
-	        throw e;
-	    }
+		// Header Validation
+		Assert.assertEquals(response.getHeader("Content-Type"), "application/json", "X->Content-Type mismatch");
+		Assert.assertNotNull(response.getHeader("Server"), "X-> Server header missing");
+
+		try {
+			response.then().log().all().statusCode(expectedStatus);
+
+			if (expectedStatus == 201 && "POSITIVE".equalsIgnoreCase(scenarioType)) {
+				// schema/datatype Validation
+				response.then().body(matchesJsonSchemaInClasspath("schemas/schema.json"));
+				// Get userId from response and save it
+				int userId = response.jsonPath().getInt("userId");
+				System.out.println("Created userId: " + userId);
+				UserContext.setUserId(userId); // this should store it for use in GET test
+
+				String userFirstName1 = response.jsonPath().getString("userFirstName");
+				Assert.assertEquals(userFirstName1, userfirstname, "Username mismatch after GET by username");
+
+				System.out.println("Created userFirstName: " + userFirstName1);
+				UserContext.setUserFirstName(userFirstName1);
+				// this should store it for use in GET test
+
+				// Data Value Validation — comparing expected with actual response
+				response.then().body("userFirstName", equalTo(user.get("userFirstName")))
+						.body("userLastName", equalTo(user.get("userLastName")))
+						.body("userEmailId", equalTo(user.get("userEmailId")))
+						.body("userContactNumber", equalTo(user.get("userContactNumber")))
+						.body("userAddress.plotNumber", equalTo(userAddress.get("plotNumber")))
+						.body("userAddress.street", equalTo(userAddress.get("street")))
+						.body("userAddress.state", equalTo(userAddress.get("state")))
+						.body("userAddress.country", equalTo(userAddress.get("country")))
+						.body("userAddress.zipCode", equalTo(userAddress.get("zipCode")));
+			}
+
+		} catch (AssertionError e) {
+			System.err.println("X-> Test failed: Expected " + expectedStatus + " but got " + actualStatusCode);
+			throw e;
+		}
 	}
 }
-	    //response.then().log().all();
-	    
-//	    if ("POSITIVE".equalsIgnoreCase(scenarioType)) {
-//	        response.then()
-//	                .statusCode(expectedStatus);
-//	                
-//	   
-//	        // Set userId in context
-//	        int userId=response.jsonPath().getInt("userId");
-//	        UserContext.setCreatedUserId(userId);
-//	       
-//	        //.body(matchesJsonSchemaInClasspath("schemas/schema.json"));
-//	        
-//	    } else if ("NEGATIVE".equalsIgnoreCase(scenarioType)) {
-//	        response.then()
-//	                .statusCode(expectedStatus); // or 409 depending on the validation rule
-//	    } else {
-//	        throw new IllegalArgumentException("Invalid scenarioType: " + scenarioType);
-//	    }
-//	}
-
-//
-//	@DataProvider(name = "combinedUserData")
-//	public Object[][] combinedUserData(Method method) throws Exception {
-//	    List<Map<String, Object>> allData = JsonUtils.readJsonArray("testdata/user_data.json");
-//
-//	    String testType = method.getName().contains("Positive") ? "POSITIVE" : "NEGATIVE";
-//
-//	    List<Map<String, Object>> filtered = allData.stream()
-//	        .filter(data -> testType.equalsIgnoreCase((String) data.get("scenarioType")))
-//	        .collect(Collectors.toList());
-//
-//	    Object[][] result = new Object[filtered.size()][1];
-//	    for (int i = 0; i < filtered.size(); i++) {
-//	        result[i][0] = filtered.get(i);
-//	    }
-//	    return result;
-//	}
-//
-//    @Test(dataProvider = "combinedUserData")
-//    public void createUser_PositiveTest(Map<String, Object> user) {
-//     
-//
-//        // Prepare payload with autogenerated fields
-//        Map<String, Object> userAddress = (Map<String, Object>) user.get("userAddress");
-//      
-//        user.put("userAddress", userAddress);
-//
-//        // Send POST request
-//        Response response =  authrequest.given()
-//         .body(user)
-//         .when()
-//            .post("/createusers");
-//        // Log and validate
-//        response.then()
-//            .log().all()
-//            .statusCode(201)
-//            			.body(matchesJsonSchemaInClasspath("schemas/schema.json"));
-//            			
-//    }
-//    @Test(dataProvider = "combinedUserData")
-//    public void createUser_NegativeTest(Map<String, Object> user) {
-//        Response response = authrequest
-//            .given().body(user)
-//            .when().post("/createusers");
-//
-//        response.then()
-//            .statusCode(400)  // adjust if your API returns 409, 422 etc.
-//            .log().all();
-//    }

@@ -1,0 +1,22 @@
+[
+  {
+    "scenarioType": "POSITIVE",
+    "httpMethod": "GET",
+    "endpoint": "/users",
+    "expectedStatusCode": 200
+  },
+  {
+    "scenarioType": "NEGATIVE",
+    "httpMethod": "POST",
+    "endpoint": "/users",
+    "expectedStatusCode": 405,
+	"error": "Method Not Allowed"
+  },
+  {
+    "scenarioType": "NEGATIVE",
+    "httpMethod": "GET",
+    "endpoint": "/userz",
+    "expectedStatusCode": 404,
+	"error": "Not Found"
+  }
+]

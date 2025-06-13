@@ -1,10 +1,10 @@
 [ 
   {
 	"scenarioType": "POSITIVE",
-	"userFirstName": "maha",
-    "userLastName": "mahaone",
-	"userContactNumber": 2656487574,
-    "userEmailId"      : "maha.team4@example.com",
+	"userFirstName": "akhil",
+    "userLastName": "akhilone",
+	"userContactNumber": 2225874689,
+    "userEmailId"      : "akhilone.team04@example.com",
 	"expectedStatusCode": 201,
     "userAddress": {
       "plotNumber": "E-42E",
@@ -31,11 +31,11 @@
     },
   {
   	"scenarioType": "NEGATIVE",
-      "userFirstName": "chitti",
-      "userLastName": "Smithoneone1",
-      "userContactNumber": 5912658728,
-      "userEmailId": "tmjh98.sm@example.com",
-	  "expectedStatusCode": 400,
+      "userFirstName": "shyama",
+      "userLastName": "shyamonefive",
+      "userContactNumber": 2585263548,
+      "userEmailId": "shyamone.sm@example.com",
+	  "expectedStatusCode": 409,
       "userAddress": {
         "plotNumber": "B-42E",
         "street": "Main Street",
@@ -59,6 +59,6 @@
 	       "country": "USA",
 	       "zipCode": 10001
 		   
-	     }
+	    }
 	   }
 ]

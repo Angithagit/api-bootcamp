@@ -1,0 +1,24 @@
+[
+  {
+    "scenarioType": "POSITIVE",
+    "expectedStatusCode": 200
+  },
+  {
+    "scenarioType": "NEGATIVE",
+    "userFirstName": "invaliduser",
+    "expectedStatusCode": 404,
+    "expectedErrorMessage": "username not found"
+  },
+  {
+    "scenarioType": "NEGATIVE",
+    "userFirstName": "null",
+    "expectedStatusCode": 404,
+    "expectedErrorMessage": "userFirstName not found"
+  },
+  {
+    "scenarioType": "NEGATIVE",
+    "userFirstName": "@maha#",
+    "expectedStatusCode": 404,
+    "expectedErrorMessage": "entered username not found"
+  }
+]

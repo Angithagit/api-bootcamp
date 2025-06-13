@@ -1,0 +1,44 @@
+[
+  {
+    "scenarioType": "POSITIVE",
+    "expectedStatusCode": 200,
+    "expectedStatus": "Success",
+    "expectedMessage": "User is deleted successfully"
+  },
+  {
+    "scenarioType": "NEGATIVE",
+    "userId": "21305",
+    "expectedStatusCode": 404,
+    "expectedStatus": "404 NOT_FOUND",
+    "expectedMessage": "User not found with id: 21305"
+  },
+  {
+    "scenarioType": "NEGATIVE",
+    "userId": "12345",
+    "expectedStatusCode": 404,
+    "expectedStatus": "404 NOT_FOUND",
+    "expectedMessage": "User not found with id: 12345"
+  },
+  {
+    "scenarioType": "NEGATIVE",
+    "userId": "34000000000000000000000000000000000000000000",
+    "expectedStatusCode": 400,
+    "expectedStatus": "400",
+    "expectedMessage": null
+  },
+  {
+    "scenarioType": "NEGATIVE",
+    "userId": "abc123",
+    "expectedStatusCode": 400,
+    "expectedStatus": "400",
+    "expectedMessage": null
+  },
+  {
+    "scenarioType": "NEGATIVE",
+    "userId": "1",
+    "endpoint": "/deleteuser/1",
+    "expectedStatusCode": 400,
+    "expectedStatus": "400 BAD_REQUEST",
+    "expectedMessage": "You can't delete user with email 'Numpy@gmail.com'"
+  }
+]
