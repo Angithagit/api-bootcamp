@@ -1,0 +1,1130 @@
+[
+  {
+    "testCaseId": "TC01",
+    "scenarioType": "Positive",
+    "method": "GET",
+    "endpoint": "/users",
+    "expectedStatusCode": 200,
+    "expectedStatusLine": "OK"
+  },
+  {
+    "testCaseId": "TC02",
+    "scenarioType": "Negative",
+    "method": "GET",
+    "endpoint": "",
+    "expectedStatusCode": 404,
+    "expectedStatusLine": "Not Found"
+  },
+  {
+    "testCaseId": "TC03",
+    "scenarioType": "Negative",
+    "method": "GET",
+    "endpoint": "/user",
+    "expectedStatusCode": 404,
+    "expectedStatusLine": "Not Found"
+  },
+  {
+    "testCaseId": "TC04",
+    "scenarioType": "Negative",
+    "method": "POST",
+    "endpoint": "/users",
+    "expectedStatusCode": 405,
+    "expectedStatusLine": "Method Not Allowed"
+  },
+  {
+    "testCaseId": "TC05",
+    "scenarioType": "Negative",
+    "method": "GET",
+    "endpoint": "/users",
+    "expectedStatusCode": 401,
+    "expectedStatusLine": "Unauthorized"
+  },
+  
+    {
+      "testCaseId": "TC06",
+      "scenarioType": "Positive",
+      "endpoint": "/createusers",
+      "method": "POST",
+      "userFirstName": "kalyaj",
+      "userLastName": "anikm",
+      "userContactNumber": 1467985930,
+      "userEmailId": "knm.mnikkm@example.com",
+      "userAddress": {
+        "plotNumber": "a-10",
+        "street": "MainSt",
+        "state": "fornia",
+        "country": "US",
+        "zipCode": 90005
+      },
+      "expectedStatusCode": 201,
+      "expectedStatusLine": "HTTP/1.1 201 Created"
+
+    },
+    
+      {
+        "testCaseId": "TC07",
+        "scenarioType": "Negative",
+        "endpoint": "/createusers",
+        "method": "POST",
+        "userFirstName": "kal",
+        "userLastName": "yani",
+        "userContactNumber": 1467985432,
+        "userEmailId": "kal.yani@example.com",
+        "userAddress": {
+          "plotNumber": "a-10",
+          "street": "MainSt",
+          "state": "fornia",
+          "country": "US",
+          "zipCode": 90005
+        },
+        "expectedStatusCode": 409,
+        "expectedStatusLine": "HTTP/1.1 409 Conflict",
+        "expectedStatusmessage": "User already exist with same email id"
+      },
+      {
+        "testCaseId": "TC08",
+        "scenarioType": "Negative",
+        "endpoint": "/create",
+        "method": "POST",
+        "userFirstName": "sam",
+        "userLastName": "doe",
+        "userContactNumber": 1234567890,
+        "userEmailId": "sam.doe@example.com",
+        "userAddress": {
+          "plotNumber": "b-20",
+          "street": "Broadway",
+          "state": "Texas",
+          "country": "US",
+          "zipCode": 75001
+        },
+        "expectedStatusCode": 404,
+        "expectedStatusLine": "HTTP/1.1 404 Not Found"
+        
+      },
+  	
+  	{
+  	    "testCaseId": "TC09",
+  	    "scenarioType": "Negative",
+  	    "endpoint": "/createusers",
+  	    "method": "POST",
+  	    "userFirstName": "kaj",
+  	    "userLastName": "lylanik",
+  	    "userContactNumber": 1467967890,
+  	    "userEmailId": "cvs*ik@example.com",
+  	    "userAddress": {
+  	      "plotNumber": "a-10",
+  	      "street": "MainSt",
+  	      "state": "fornia",
+  	      "country": "US",
+  	      "zipCode": 90004
+  	    },
+  	    "expectedStatusCode": 400,
+  	    "expectedStatusLine": "HTTP/1.1 400 Bad Request"
+
+  	  },
+  	  
+  	  {
+  	  	    "testCaseId": "TC10",
+  	  	    "scenarioType": "Negative",
+  	  	    "endpoint": "/createusers",
+  	  	    "method": "POST",
+  	  	    "userFirstName": "456",
+  	  	    "userLastName": "lyanik",
+  	  	    "userContactNumber": 1467985789,
+  	  	    "userEmailId": "kal.y#an*ik@example.com",
+  	  	    "userAddress": {
+  	  	      "plotNumber": "a-10",
+  	  	      "street": "MainSt",
+  	  	      "state": "fornia",
+  	  	      "country": "US",
+  	  	      "zipCode": 90004
+  	  	    },
+  	  	    "expectedStatusCode": 400,
+  	  	    "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+  			"expectedMessage": "User First Name is mandatory and should contains alphabets only"
+  	  	  },
+  	  
+		  
+		    {
+		      "testCaseId": "TC11",
+		      "scenarioType": "Positive",
+		      "endpoint": "users/username/{userFirstName}",
+		      "method": "GET",
+		      "expectedStatusCode": 200,
+		      "expectedStatusLine": "OK"
+		    },
+		    {
+		      "testCaseId": "TC12",
+		      "scenarioType": "Negative",
+		      "endpoint": "users/username",
+		      "method": "GET",
+		      "userFirstName": "kalyani",
+		      "expectedStatusCode": 404,
+		      "expectedStatusLine": "Not Found"
+		    },
+		    {
+		      "testCaseId": "TC13",
+		      "scenarioType": "Negative",
+		      "endpoint": "users/username/{userFirstName}",
+		      "method": "GET",
+		      "userFirstName": "abcd",
+		      "expectedStatusCode": 404,
+		      "expectedStatusLine": "Not Found",
+		      "expectedStatusmessage": "User with userFirstName abcd not found!"
+		    },
+		    {
+		      "testCaseId": "TC14",
+		      "scenarioType": "Negative",
+		      "endpoint": "users/username/{userFirstName}",
+		      "method": "GET",
+		      "userFirstName": "12234",
+		      "expectedStatusCode": 404,
+		      "expectedStatusLine": "Not Found",
+		      "expectedStatusmessage": "User with userFirstName 12234 not found!"
+		    },
+		    {
+		      "testCaseId": "TC15",
+		      "scenarioType": "Negative",
+		      "method": "GET",
+		      "endpoint": "users/username/{userFirstName}", 
+		      "userFirstName": "kalyani123",
+		      "expectedStatusCode": 404,
+		      "expectedStatusLine": "Not Found",
+		      "expectedStatusmessage": "User with userFirstName kalyani123 not found!"
+		    },
+		    {
+		      "testCaseId": "TC16",
+		      "scenarioType": "Negative",
+		      "method": "GET",
+		      "endpoint": "users/username/{userFirstName}", 
+		      "userFirstName": "kal@yani",
+		      "expectedStatusCode": 404,
+		      "expectedStatusLine": "Not Found",
+		      "expectedStatusmessage": "User with userFirstName kal@yani not found!"
+		    },
+		    {
+		      "testCaseId": "TC17",
+		      "scenarioType": "Negative",
+		      "method": "POST",
+		      "endpoint": "users/username/{userFirstName}", 
+		      "userFirstName": "kalyani",
+		      "expectedStatusCode": 405,
+		      "expectedStatusLine": "Method Not Allowed",
+		      "expectedStatusmessage": ""
+		    },
+		    {
+		      "testCaseId": "TC18",
+		      "scenarioType": "Negative",
+		      "method": "GET",
+		      "endpoint": "", 
+		      "userFirstName": "",
+		      "expectedStatusCode": 404,
+		      "expectedStatusLine": "Not Found",
+		      "expectedStatusmessage": ""
+		    },
+		    {
+		      "testCaseId": "TC19",
+		      "scenarioType": "Negative",
+		      "method": "GET",
+		      "endpoint": "users/username/{userFirstName}", 
+		      "userFirstName": "",
+		      "expectedStatusCode": 401,
+		      "expectedStatusLine": "HTTP/1.1 401 Unauthorized"
+		      
+		    },
+			
+			
+				{
+				    "testCaseId": "TC20",
+				    "scenarioType": "Negative",
+				    "method": "PUT",
+				    "endpoint": "updateuser/{userId}", 
+					"userId": 23866,
+				    "expectedStatusCode": 401,
+				    "expectedStatusLine": "HTTP/1.1 401 Unauthorized",
+					"userFirstName":"team",
+					        "userLastName": "apibootcamp",
+					        "userContactNumber": 9871234056,
+					        "userEmailId": "bootcamp@gmail.com",
+							"userAddress": {
+					           "plotNumber": "pl-22",
+					            "street": "local st",
+					            "state": "gh",
+					            "country": "US",
+					            "zipCode": 24680
+								}
+					        
+				    
+				  },
+				  
+				  {
+				  	    "testCaseId": "TC21",
+				  	    "scenarioType": "Negative",
+				  	    "method": "PUT",
+				  	    "endpoint": "updateuser/{userId}",
+						"userId": 23866, 
+				  	    "expectedStatusCode": 401,
+				  	    "expectedStatusLine": "HTTP/1.1 401 Unauthorized",
+				  		"userFirstName":"team",
+				  		        "userLastName": "apibootcamp",
+				  		        "userContactNumber": 9871213456,
+				  		        "userEmailId": "bootcamp@gmail.com",
+								"userAddress": {
+				  		            "plotNumber": "pl-22",
+				  		            "street": "local st",
+				  		            "state": "gh",
+				  		            "country": "US",
+				  		            "zipCode": 24680
+				  		        
+				  	    }
+				  	  },
+				
+			    { 	"testCaseId": "TC22",
+				    "scenarioType": "Positive",
+				    "endpoint": "updateuser/{userId}",
+				    "method": "PUT",
+					"expectedStatusCode": 200,
+				    "expectedStatusLine": "HTTP/1.1 200 OK",
+					
+			        "userFirstName":"samplec",
+			        "userLastName": "sampletestd",
+			        "userContactNumber": 9871243156,
+			        "userEmailId": "team.Kalyanis7@gmail.com",
+					"userAddress": {
+			            "plotNumber": "A-12Dc",
+			            "street": "teststreeets",
+			            "state": "nay",
+			            "country": "usa",
+			            "zipCode": 123467
+			        }
+					
+			    },
+				
+				{ 	"testCaseId": "TC23",
+					    "scenarioType": "Negative",
+					    "endpoint": "updateuser",
+					    "method": "PUT",
+						"expectedStatusCode": 404,
+					    "expectedStatusLine": "Not Found",
+					       "userFirstName":"team",
+					       "userLastName": "apibootcamp",
+					       "userContactNumber": 9871243456,
+					       "userEmailId": "bootcamp@gmail.com",
+						"userAddress": {
+					           "plotNumber": "pl-22",
+					           "street": "local st",
+					           "state": "gh",
+					           "country": "US",
+					           "zipCode": 24680
+					       }
+						
+					   },
+					  
+						   {
+						       "testCaseId": "TC24",
+						       "scenarioType": "Negative",
+						       "endpoint": "updateuser/{userId}",
+						       "method": "PUT",
+						       "expectedStatusCode": 400,
+						       "expectedStatusLine": "BAD REQUEST",
+						       "userFirstName": "Joh",
+						       "userLastName": "Do",
+						       "userEmailId": "joh.do@example.com",
+						       "userContactNumber": 12345,
+						       "userAddress": {
+						         "plotNumber": "pl-23",
+						         "street": "localst",
+						         "state": "ij",
+						         "country": "USa",
+						         "zipCode": 246745
+						       },
+						       "expectedMessage": "Phone Number is required and should contains 10 numeric values only"
+						     },
+						     {
+						       "testCaseId": "TC25",
+						       "scenarioType": "Negative",
+						       "endpoint": "updateuser/{userId}",
+						       "method": "PUT",
+						       "expectedStatusCode": 400,
+						       "expectedStatusLine": "BAD REQUEST",
+						       "userFirstName": "John",
+						       "userLastName": "Doe",
+						       "userEmailId": "john.doe@example.com",
+						       "userContactNumber": 123456789012,
+						       "userAddress": {
+						         "plotNumber": "pl-23",
+						         "street": "localst",
+						         "state": "ij",
+						         "country": "USa",
+						         "zipCode": 246745
+						       },
+						       "expectedMessage": "Phone Number is required and should contains 10 numeric values only"
+						     },
+						     {
+						       "testCaseId": "TC26",
+						       "scenarioType": "Negative",
+						       "endpoint": "updateuser/{userId}",
+						       "method": "PUT",
+						       "expectedStatusCode": 400,
+						       "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+						       "userFirstName": "John",
+						       "userLastName": "Doe",
+						       "userEmailId": "john.doe_@example.com",
+						       "userContactNumber": 1284567896,
+						       "userAddress": {
+						         "plotNumber": "pl-23",
+						         "street": "localst",
+						         "state": "ij",
+						         "country": "USa",
+						         "zipCode": 246745
+						       },
+						       "expectedMessage":"User email Id is required"
+						     },
+						     {
+						       "testCaseId": "TC27",
+						       "scenarioType": "Negative",
+						       "endpoint": "updateuser/{userId}",
+						       "method": "PUT",
+						       "expectedStatusCode": 400,
+						       "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+						       "userFirstName": "123",
+						       "userLastName": "Doe",
+						       "userEmailId": "john.doe@example.com",
+						       "userContactNumber": 1284597896,
+						       "userAddress": {
+						         "plotNumber": "pl-23",
+						         "street": "localst",
+						         "state": "ij",
+						         "country": "USa",
+						         "zipCode": 246745
+						       },
+						       "expectedMessage": "User First Name is mandatory and should contains alphabets only"
+						     },
+						     {
+						       "testCaseId": "TC28",
+						       "scenarioType": "Negative",
+						       "endpoint": "updateuser/{userId}",
+						       "method": "PUT",
+						       "expectedStatusCode": 400,
+						       "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+						       "userFirstName": "John123",
+						       "userLastName": "Doe",
+						       "userEmailId": "john.doe@example.com",
+						       "userContactNumber": 1204560896,
+						       "userAddress": {
+						         "plotNumber": "pl-23",
+						         "street": "localst",
+						         "state": "ij",
+						         "country": "USa",
+						         "zipCode": 246745
+						       },
+						       "expectedMessage": "User First Name is mandatory and should contains alphabets only"
+						     },
+						     {
+						       "testCaseId": "TC29",
+						       "scenarioType": "Negative",
+						       "endpoint": "updateuser/{userId}",
+						       "method": "PUT",
+						       "expectedStatusCode": 400,
+						       "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+						       "userFirstName": "John@Doe",
+						       "userLastName": "Doe",
+						       "userEmailId": "john.doe@example.com",
+						       "userContactNumber": 2845967896,
+						       "userAddress": {
+						         "plotNumber": "pl-23",
+						         "street": "localst",
+						         "state": "ij",
+						         "country": "USa",
+						         "zipCode": 246745
+						       },
+						       "expectedMessage": "User First Name is mandatory and should contains alphabets only"
+						     },
+						     {
+						       "testCaseId": "TC30",
+						       "scenarioType": "Negative",
+						       "endpoint": "updateuser/{userId}",
+						       "method": "PUT",
+						       "expectedStatusCode": 400,
+						       "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+						       "userFirstName": "John",
+						       "userLastName": "Doe123",
+						       "userEmailId": "john.doe@example.com",
+						       "userContactNumber": 294560896,
+						       "userAddress": {
+						         "plotNumber": "pl-23",
+						         "street": "localst",
+						         "state": "ij",
+						         "country": "USa",
+						         "zipCode": 246745
+						       },
+						       "expectedMessage": "User Last Name is mandatory and should contains alphabets only"
+						     },
+							 
+							 {
+							 	       "testCaseId": "TC31",
+							 	       "scenarioType": "Negative",
+							 	       "endpoint": "updateuser/{userId}",
+							 	       "method": "PUT",
+							 	       "expectedStatusCode": 400,
+							 	       "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+							 	       "userFirstName": "Jojo",
+							 	       "userLastName": "Do@e",
+							 	       "userEmailId": "jojo.doe@example.com",
+							 	       "userContactNumber": 1274567896,
+							 	       "userAddress": {
+							 	         "plotNumber": "pl-23",
+							 	         "street": "localst",
+							 	         "state": "ij",
+							 	         "country": "USa",
+							 	         "zipCode": 246745
+							 	       },
+							 	       "expectedMessage": "User Last Name is mandatory and should contains alphabets only"
+							 	     },
+									 
+									 {
+									 		 	       "testCaseId": "TC32",
+									 		 	       "scenarioType": "Negative",
+									 		 	       "endpoint": "updateuser/{userId}",
+									 		 	       "method": "PUT",
+									 		 	       "expectedStatusCode": 400,
+									 		 	       "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+									 		 	       "userFirstName": "Jojo",
+									 		 	       "userLastName": "123",
+									 		 	       "userEmailId": "jojo.doe@example.com",
+									 		 	       "userContactNumber": 1204597896,
+									 		 	       "userAddress": {
+									 		 	         "plotNumber": "pl-23",
+									 		 	         "street": "localst",
+									 		 	         "state": "ij",
+									 		 	         "country": "USa",
+									 		 	         "zipCode": 246745
+									 		 	       },
+									 		 	       "expectedMessage": "User Last Name is mandatory and should contains alphabets only"
+									 		 	     },
+													 {
+													 		 	       "testCaseId": "TC33",
+													 		 	       "scenarioType": "Negative",
+													 		 	       "endpoint": "updateuser/{userId}",
+													 		 	       "method": "PUT",
+													 		 	       "expectedStatusCode": 400,
+													 		 	       "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+													 		 	       "userFirstName": "Jojo",
+													 		 	       "userLastName": "Doe",
+													 		 	       "userEmailId": "jojo.doe@example.com",
+													 		 	       "userContactNumber": 1284167896,
+													 		 	       "userAddress": {
+													 		 	         "plotNumber": "plot",
+													 		 	         "street": "localst",
+													 		 	         "state": "ij",
+													 		 	         "country": "USa",
+													 		 	         "zipCode": 246745
+													 		 	       },
+													 		 	       "expectedMessage": "Plot number should contain alphaNumeric values only"
+													 		 	     },
+																	 {
+																	 									 		 	       "testCaseId": "TC34",
+																	 									 		 	       "scenarioType": "Negative",
+																	 									 		 	       "endpoint": "updateuser/{userId}",
+																	 									 		 	       "method": "PUT",
+																	 									 		 	       "expectedStatusCode": 400,
+																	 									 		 	       "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+																	 									 		 	       "userFirstName": "Jojo",
+																	 									 		 	       "userLastName": "Doe",
+																	 									 		 	       "userEmailId": "jojo.doe@example.com",
+																	 									 		 	       "userContactNumber": 1284557896,
+																	 									 		 	       "userAddress": {
+																	 									 		 	         "plotNumber": "plot@",
+																	 									 		 	         "street": "localst",
+																	 									 		 	         "state": "ij",
+																	 									 		 	         "country": "USa",
+																	 									 		 	         "zipCode": 246745
+																	 									 		 	       },
+																	 									 		 	       "expectedMessage": "Plot number should contain alphaNumeric values only"
+																	 									 		 	     },
+																														 {
+																														 									 		 	       "testCaseId": "TC35",
+																														 									 		 	       "scenarioType": "Negative",
+																														 									 		 	       "endpoint": "updateuser/{userId}",
+																														 									 		 	       "method": "PUT",
+																														 									 		 	       "expectedStatusCode": 400,
+																														 									 		 	       "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+																														 									 		 	       "userFirstName": "Jojo",
+																														 									 		 	       "userLastName": "Doe",
+																														 									 		 	       "userEmailId": "jojo.doe@example.com",
+																														 									 		 	       "userContactNumber": 1267567896,
+																														 									 		 	       "userAddress": {
+																														 									 		 	         "plotNumber": "1234",
+																														 									 		 	         "street": "localst",
+																														 									 		 	         "state": "ij",
+																														 									 		 	         "country": "USa",
+																														 									 		 	         "zipCode": 246745
+																														 									 		 	       },
+																														 									 		 	       "expectedMessage": "Plot number should contain alphaNumeric values only"
+																														 									 		 	     },
+																														 													 																									 
+																																											 {
+																																											 									 		 	       "testCaseId": "TC36",
+																																											 									 		 	       "scenarioType": "Negative",
+																																											 									 		 	       "endpoint": "updateuser/{userId}",
+																																											 									 		 	       "method": "PUT",
+																																											 									 		 	       "expectedStatusCode": 400,
+																																											 									 		 	       "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+																																											 									 		 	       "userFirstName": "Jojo",
+																																											 									 		 	       "userLastName": "Doe",
+																																											 									 		 	       "userEmailId": "jojo.doe@example.com",
+																																											 									 		 	       "userContactNumber": 1282317896,
+																																											 									 		 	       "userAddress": {
+																																											 									 		 	         "plotNumber": "plot123",
+																																											 									 		 	         "street": "local%&st",
+																																											 									 		 	         "state": "ij",
+																																											 									 		 	         "country": "USa",
+																																											 									 		 	         "zipCode": 246745
+																																											 									 		 	       },
+																																											 									 		 	       "expectedMessage": "Street should contain alphabet characters only"
+																																											 									 		 	     },
+																																											 													 								 												 
+																																																								 {
+																																																								     "testCaseId": "TC37",
+																																																								     "scenarioType": "Negative",
+																																																								     "endpoint": "updateuser/{userId}",
+																																																								     "method": "PUT",
+																																																								     "userFirstName": "Jojo",
+																																																								     "userLastName": "Doe",
+																																																								     "userEmailId": "jojo.doe@example.com",
+																																																								     "userContactNumber": 8745682312,
+																																																								     "userAddress": {
+																																																								       "plotNumber": "A12",
+																																																								       "street": "12345",
+																																																								       "state": "California",
+																																																								       "country": "USA",
+																																																								       "zipCode": 123456
+																																																								     },
+																																																								     "expectedStatusCode": 400,
+																																																								     "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+																																																								     "expectedMessage": "Street should contain alphabet characters only"
+																																																								   },
+																																																								   {
+																																																								     "testCaseId": "TC38",
+																																																								     "scenarioType": "Negative",
+																																																								     "endpoint": "updateuser/{userId}",
+																																																								     "method": "PUT",
+																																																								     "userFirstName": "Jojo",
+																																																								     "userLastName": "Doe",
+																																																								     "userEmailId": "jojo.doe@example.com",
+																																																								     "userContactNumber": 1245567896,
+																																																								     "userAddress": {
+																																																								       "plotNumber": "A12",
+																																																								       "street": "Main123",
+																																																								       "state": "California",
+																																																								       "country": "USA",
+																																																								       "zipCode": 123456
+																																																								     },
+																																																								     "expectedStatusCode": 400,
+																																																								     "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+																																																								     "expectedMessage": "Street should contain alphabet characters only"
+																																																								   },
+																																																								   {
+																																																								     "testCaseId": "TC39",
+																																																								     "scenarioType": "Negative",
+																																																								     "endpoint": "updateuser/{userId}",
+																																																								     "method": "PUT",
+																																																								     "userFirstName": "Jojo",
+																																																								     "userLastName": "Doe",
+																																																								     "userEmailId": "jojo.doe@example.com",
+																																																								     "userContactNumber": 1284598896,
+																																																								     "userAddress": {
+																																																								       "plotNumber": "A12",
+																																																								       "street": "Main Street",
+																																																								       "state": "Calif@#",
+																																																								       "country": "USA",
+																																																								       "zipCode": 123456
+																																																								     },
+																																																								     "expectedStatusCode": 400,
+																																																								     "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+																																																								     "expectedMessage": "State should contain alphabet characters only"
+																																																								   },
+																																																								   {
+																																																								     "testCaseId": "TC40",
+																																																								     "scenarioType": "Negative",
+																																																								     "endpoint": "updateuser/{userId}",
+																																																								     "method": "PUT",
+																																																								     "userFirstName": "Jojo",
+																																																								     "userLastName": "Doe",
+																																																								     "userEmailId": "jojo.doe@example.com",
+																																																								     "userContactNumber": 1287867896,
+																																																								     "userAddress": {
+																																																								       "plotNumber": "A12",
+																																																								       "street": "Main Street",
+																																																								       "state": "123",
+																																																								       "country": "USA",
+																																																								       "zipCode": 123456
+																																																								     },
+																																																								     "expectedStatusCode": 400,
+																																																								     "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+																																																								     "expectedMessage": "State should contain alphabet characters only"
+																																																								   },
+																																																								   {
+																																																								     "testCaseId": "TC41",
+																																																								     "scenarioType": "Negative",
+																																																								     "endpoint": "updateuser/{userId}",
+																																																								     "method": "PUT",
+																																																								     "userFirstName": "Jojo",
+																																																								     "userLastName": "Doe",
+																																																								     "userEmailId": "jojo.doe@example.com",
+																																																								     "userContactNumber": 1094567896,
+																																																								     "userAddress": {
+																																																								       "plotNumber": "A12",
+																																																								       "street": "Main Street",
+																																																								       "state": "CA123",
+																																																								       "country": "USA",
+																																																								       "zipCode": 123456
+																																																								     },
+																																																								     "expectedStatusCode": 400,
+																																																								     "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+																																																								     "expectedMessage": "State should contain alphabet characters only"
+																																																								   },
+																																																								   {
+																																																								     "testCaseId": "TC42",
+																																																								     "scenarioType": "Negative",
+																																																								     "endpoint": "updateuser/{userId}",
+																																																								     "method": "PUT",
+																																																								     "userFirstName": "Jojo",
+																																																								     "userLastName": "Doe",
+																																																								     "userEmailId": "jojo.doe@example.com",
+																																																								     "userContactNumber": 1283367896,
+																																																								     "userAddress": {
+																																																								       "plotNumber": "A12",
+																																																								       "street": "Main Street",
+																																																								       "state": "California",
+																																																								       "country": "123",
+																																																								       "zipCode": 123456
+																																																								     },
+																																																								     "expectedStatusCode": 400,
+																																																								     "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+																																																								     "expectedMessage": "country should contain alphabet characters only"
+																																																								   },
+																																																								   {
+																																																								     "testCaseId": "TC43",
+																																																								     "scenarioType": "Negative",
+																																																								     "endpoint": "updateuser/{userId}",
+																																																								     "method": "PUT",
+																																																								     "userFirstName": "Jojo",
+																																																								     "userLastName": "Doe",
+																																																								     "userEmailId": "jojo.doe@example.com",
+																																																								     "userContactNumber": 1284557896,
+																																																								     "userAddress": {
+																																																								       "plotNumber": "A12",
+																																																								       "street": "Main Street",
+																																																								       "state": "California",
+																																																								       "country": "US$",
+																																																								       "zipCode": 123456
+																																																								     },
+																																																								     "expectedStatusCode": 400,
+																																																								     "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+																																																								     "expectedMessage": "country should contain alphabet characters only"
+																																																								   },
+																																																								   {
+																																																								     "testCaseId": "TC44",
+																																																								     "scenarioType": "Negative",
+																																																								     "endpoint": "updateuser/{userId}",
+																																																								     "method": "PUT",
+																																																								     "userFirstName": "Jojo",
+																																																								     "userLastName": "Doe",
+																																																								     "userEmailId": "jojo.doe@example.com",
+																																																								     "userContactNumber": 1209567896,
+																																																								     "userAddress": {
+																																																								       "plotNumber": "A12",
+																																																								       "street": "Main Street",
+																																																								       "state": "California",
+																																																								       "country": "US123",
+																																																								       "zipCode": 123456
+																																																								     },
+																																																								     "expectedStatusCode": 400,
+																																																								     "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+																																																								     "expectedMessage": "country should contain alphabet characters only"
+																																																								   },
+																																																								   {
+																																																								     "testCaseId": "TC45",
+																																																								     "scenarioType": "Negative",
+																																																								     "endpoint": "updateuser/{userId}",
+																																																								     "method": "PUT",
+																																																								     "userFirstName": "Jojo",
+																																																								     "userLastName": "Doe",
+																																																								     "userEmailId": "jojo.doe@example.com",
+																																																								     "userContactNumber": 1286767896,
+																																																								     "userAddress": {
+																																																								       "plotNumber": "A12",
+																																																								       "street": "Main Street",
+																																																								       "state": "California",
+																																																								       "country": "USA",
+																																																								       "zipCode": "@1234"
+																																																								     },
+																																																								     "expectedStatusCode": 400,
+																																																								     "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+																																																								     "expectedMessage": "zipcode should contain numbers only"
+																																																								   },
+																																																								   {
+																																																								     "testCaseId": "TC46",
+																																																								     "scenarioType": "Negative",
+																																																								     "endpoint": "updateuser/{userId}",
+																																																								     "method": "PUT",
+																																																								     "userFirstName": "Jojo",
+																																																								     "userLastName": "Doe",
+																																																								     "userEmailId": "jojo.doe@example.com",
+																																																								     "userContactNumber": 1341267896,
+																																																								     "userAddress": {
+																																																								       "plotNumber": "A12",
+																																																								       "street": "Main Street",
+																																																								       "state": "California",
+																																																								       "country": "USA",
+																																																								       "zipCode": "abcde"
+																																																								     },
+																																																								     "expectedStatusCode": 400,
+																																																								     "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+																																																								     "expectedMessage": "zipcode should contain numbers only"
+																																																								   },
+																																																								   {
+																																																								     "testCaseId": "TC47",
+																																																								     "scenarioType": "Negative",
+																																																								     "endpoint": "updateuser/{userId}",
+																																																								     "method": "PUT",
+																																																								     "userFirstName": "Jojo",
+																																																								     "userLastName": "Doe",
+																																																								     "userEmailId": "jojo.doe@example.com",
+																																																								     "userContactNumber": 1284598796,
+																																																								     "userAddress": {
+																																																								       "plotNumber": "A12",
+																																																								       "street": "Main Street",
+																																																								       "state": "California",
+																																																								       "country": "USA",
+																																																								       "zipCode": "abc123"
+																																																								     },
+																																																								     "expectedStatusCode": 400,
+																																																								     "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+																																																								     "expectedMessage": "zipcode should contain numbers only"
+																																																								   },
+																																																								   {
+																																																								     "testCaseId": "TC48",
+																																																								     "scenarioType": "Negative",
+																																																								     "endpoint": "updateuser/{userId}",
+																																																								     "method": "PUT",
+																																																								     "userFirstName": "Jojo",
+																																																								     "userLastName": "Doe",
+																																																								     "userEmailId": "jojo.doe@example.com",
+																																																								     "userContactNumber": 1234567891,
+																																																								     "userAddress": {
+																																																								       "plotNumber": "A12",
+																																																								       "street": "Main Street",
+																																																								       "state": "California",
+																																																								       "country": "USA",
+																																																								       "zipCode": 123456
+																																																								     },
+																																																								     "expectedStatusCode": 400,
+																																																								     "expectedStatusLine": "HTTP/1.1 400 Bad Request",
+																																																								     "expectedMessage": "Contact number is already in use by another user"
+																																																								   },
+																																																								   
+																																																								     {
+																																																								       "testCaseId": "TC49",
+																																																								       "scenarioType": "Negative",
+																																																								       "method": "GET",
+																																																								       "userId": "9999999",
+																																																								       "endpoint": "/user/{userId}",
+																																																								       "expectedStatusCode": 404,
+																																																								       "expectedStatusLine": "Not Found",
+																																																								       "expectedMessage": "User not found with id: 9999999"
+																																																								     },
+																																																								     {
+																																																								       "testCaseId": "TC50",
+																																																								       "scenarioType": "Negative",
+																																																								       "method": "GET",
+																																																								       "userId": "27532",
+																																																								       "endpoint": "/user/{userId}",
+																																																								       "expectedStatusCode": 401,
+																																																								       "expectedStatusLine": "Unauthorized"
+																																																								     },
+																																																								     {
+																																																								       "testCaseId": "TC51",
+																																																								       "scenarioType": "Negative",
+																																																								       "method": "GET",
+																																																								       "userId": "27532",
+																																																								       "endpoint": "",
+																																																								       "expectedStatusCode": 404,
+																																																								       "expectedStatusLine": "Not Found"
+																																																								     },
+																																																								     {
+																																																								       "testCaseId": "TC52",
+																																																								       "scenarioType": "Negative",
+																																																								       "method": "GET",
+																																																								       "userId": "27532",
+																																																								       "endpoint": "/us",
+																																																								       "expectedStatusCode": 404,
+																																																								       "expectedStatusLine": "Not Found"
+																																																								     },
+																																																								     {
+																																																								       "testCaseId": "TC53",
+																																																								       "scenarioType": "Negative",
+																																																								       "method": "POST",
+																																																								       "userId": "27532",
+																																																								       "endpoint": "/user/{userId}",
+																																																								       "expectedStatusCode": 405,
+																																																								       "expectedStatusLine": "Method Not Allowed"
+																																																								     },
+																																																								     {
+																																																								       "testCaseId": "TC54",
+																																																								       "scenarioType": "Negative",
+																																																								       "method": "GET",
+																																																								       "userId": "abc",
+																																																								       "endpoint": "/user/{userId}",
+																																																								       "expectedStatusCode": 404,
+																																																								       "expectedStatusLine": "Not Found"
+																																																								     },
+																																																								     {
+																																																								       "testCaseId": "TC55",
+																																																								       "scenarioType": "Negative",
+																																																								       "method": "GET",
+																																																								       "userId": "abc27532",
+																																																								       "endpoint": "/user/{userId}",
+																																																								       "expectedStatusCode": 404,
+																																																								       "expectedStatusLine": "Not Found"
+																																																								     },
+																																																								     {
+																																																								       "testCaseId": "TC56",
+																																																								       "scenarioType": "Negative",
+																																																								       "method": "GET",
+																																																								       "userId": "27#532",
+																																																								       "endpoint": "/user/{userId}",
+																																																								       "expectedStatusCode": 404,
+																																																								       "expectedStatusLine": "Not Found"
+																																																								     },
+																																																								     {
+																																																								       "testCaseId": "TC57",
+																																																								       "scenarioType": "Positive",
+																																																								       "method": "GET",
+																																																								       "endpoint": "/user/{userId}",
+																																																								       "expectedStatusCode": 200,
+																																																								       "expectedStatusLine": "OK"
+																																																								     },
+																																																									 {
+																																																									 																																																									   "testCaseId": "TC58",
+																																																									 																																																									   "scenarioType": "Positive",
+																																																									 																																																									   "endpoint": "/updateuserfields/{userId}",
+																																																									 																																																									   "method": "PATCH",
+																																																									 																																																									   
+																																																									 																																																									   "userLastName": "suv",
+																																																									 																																																									   
+																																																									 																																																									   "expectedStatusCode": 200,
+																																																									 																																																									   "expectedStatusLine": "HTTP/1.1 200 OK",
+																																																									 																																																									   "expectedStatusmessage": "User updated successfully"
+																																																									 																																																									 },
+
+																																																									 																															 
+																																																									   
+																																																									   {
+																																																									     "testCaseId": "TC59",
+																																																									 	"scenarioType": "Negative",
+																																																									 	"method": "DELETE",
+																																																									     "userId": "9999999",
+																																																									     "endpoint": "/deleteuser/{userId}",
+																																																									     "expectedStatusCode": 404,
+																																																									 	"expectedStatusLine": "Not Found",
+																																																									 	"expectedMessage": "User not found with id: 9999999"
+																																																									   },
+																																																									   {
+																																																									     "testCaseId": "TC60",
+																																																									 	"scenarioType": "Negative",
+																																																									 	"method": "DELETE",
+																																																									     "userId": "22711",
+																																																									     "endpoint": "/deleteuser/{userId}",
+																																																									     "expectedStatusCode": 404,
+																																																									 	"expectedStatusLine": "Not Found",
+																																																									 	"expectedMessage": "User not found with id: 22711"
+																																																									   },
+																																																									   {
+																																																									     "testCaseId": "TC61",
+																																																									 	"scenarioType": "Negative",
+																																																									 	"method": "DELETE",
+																																																									     "userId": "22832",
+																																																									     "endpoint": "/deleteuser/{userId}",
+																																																									     "expectedStatusCode": 401,
+																																																									 	"expectedStatusLine": "HTTP/1.1 401 Unauthorized"
+																																																									   },
+																																																									   {
+																																																									     "testCaseId": "TC62",
+																																																									 	"scenarioType": "Negative",
+																																																									 	"method": "DELETE",
+																																																									     "userId": "22832",
+																																																									     "endpoint": "",
+																																																									     "expectedStatusCode": 404,
+																																																									 	"expectedStatusLine": "Not Found"
+																																																									   },
+																																																									   {
+																																																									       "testCaseId": "TC63",
+																																																									   	"scenarioType": "Negative",
+																																																									   	"method": "DELETE",
+																																																									       "userId": "22832",
+																																																									       "endpoint": "/delete/{userId}",
+																																																									       "expectedStatusCode": 404,
+																																																									 	  "expectedStatusLine": "Not Found"
+																																																									     },
+																																																									   {
+																																																									     "testCaseId": "TC64",
+																																																									 	"scenarioType": "Negative",
+																																																									 	"method": "POST",
+																																																									     "userId": "22832",
+																																																									     "endpoint": "/deleteuser/{userId}",
+																																																									     "expectedStatusCode": 405,
+																																																									 	"expectedStatusLine": "Method Not Allowed"
+																																																									   },
+																																																									   
+																																																									   {
+																																																									     "testCaseId": "TC65",
+																																																									 	"scenarioType": "Negative",
+																																																									 	"method": "DELETE",
+																																																									     "userId": "abc",
+																																																									     "endpoint": "/deleteuser/{userId}",
+																																																									     "expectedStatusCode": 400,
+																																																									 	"expectedStatusLine": "Bad Request"
+																																																									   },
+																																																									   {
+																																																									     "testCaseId": "TC66",
+																																																									 	"scenarioType": "Negative",
+																																																									 	"method": "DELETE",
+																																																									     "userId": "abc123",
+																																																									     "endpoint": "/deleteuser/{userId}",
+																																																									     "expectedStatusCode": 400,
+																																																									 	"expectedStatusLine": "Bad Request"
+																																																									   },
+																																																									   {
+																																																									       "testCaseId": "TC67",
+																																																									   	"scenarioType": "Negative",
+																																																									   	"method": "DELETE",
+																																																									       "userId": "21@861",
+																																																									       "endpoint": "/deleteuser/{userId}",
+																																																									       "expectedStatusCode": 400,
+																																																									   	"expectedStatusLine": "Bad Request"
+																																																									     },
+																																																									   
+																																																									   {
+																																																									       "testCaseId": "TC68",
+																																																									   	"scenarioType": "Positive",
+																																																									   	"method": "DELETE",
+																																																									       "endpoint": "/deleteuser/{userId}",
+																																																									       "expectedStatusCode": 200,
+																																																									   	"expectedStatusLine": "OK",
+																																																									       "expectedStatusmessage": "User is deleted successfully"
+																																																									     },
+																																																										 {
+																																																										     "testCaseId": "TC69",
+																																																										     "scenarioType": "Negative",
+																																																										     "method": "DELETE",
+																																																										     "userFirstName": "badadata",
+																																																										     "endpoint": "/deleteuser/username/{userFirstName}",
+																																																										     "expectedStatusCode": 404,
+																																																										     "expectedStatusLine": "Not Found",
+																																																										     "expectedMessage": "User does not exist with name 'baddata'"
+																																																										   },
+																																																										   {
+																																																										     "testCaseId": "TC70",
+																																																										     "scenarioType": "Negative",
+																																																										     "method": "DELETE",
+																																																										     "endpoint": "/deleteuser/username/{userFirstName}",
+																																																										 	"userFirstName": "eorwzerihdf",
+																																																										     "expectedStatusCode": 404,
+																																																										     "expectedStatusLine": "Not Found",
+																																																										     "expectedMessage": "User does not exist with name 'eorwzerihdf'"
+																																																										   },
+																																																										   {
+																																																										     "testCaseId": "TC71",
+																																																										     "scenarioType": "Negative",
+																																																										     "method": "DELETE",
+																																																										     "userFirstName": "Reed",
+																																																										     "endpoint": "/deleteuser/username/{userFirstName}",
+																																																										     "expectedStatusCode": 401,
+																																																										     "expectedStatusLine": "Unauthorized"
+																																																										   },
+																																																										   {
+																																																										     "testCaseId": "TC72",
+																																																										     "scenarioType": "Negative",
+																																																										     "method": "DELETE",
+																																																										     "userFirstName": "ADirt",
+																																																										     "endpoint": "",
+																																																										     "expectedStatusCode": 404,
+																																																										     "expectedStatusLine": "Not Found"
+																																																										   },
+																																																										   {
+																																																										     "testCaseId": "TC73",
+																																																										     "scenarioType": "Negative",
+																																																										     "method": "DELETE",
+																																																										     "userFirstName": "John",
+																																																										     "endpoint": "/delete",
+																																																										     "expectedStatusCode": 404,
+																																																										     "expectedStatusLine": "Not Found"
+																																																										   },
+																																																										   {
+																																																										     "testCaseId": "TC74",
+																																																										     "scenarioType": "Negative",
+																																																										     "method": "POST",
+																																																										     "userFirstName": "four",
+																																																										     "endpoint": "/deleteuser/username/{userFirstName}",
+																																																										     "expectedStatusCode": 405,
+																																																										     "expectedStatusLine": "Method Not Allowed"
+																																																										   },
+																																																										   {
+																																																										     "testCaseId": "TC75",
+																																																										     "scenarioType": "Negative",
+																																																										     "method": "DELETE",
+																																																										     "userFirstName": "12345",
+																																																										     "endpoint": "/deleteuser/username/{userFirstName}",
+																																																										     "expectedStatusCode": 404,
+																																																										     "expectedStatusLine": "Not Found",
+																																																										 	"expectedMessage": "User does not exist with name '12345'"
+																																																										   },
+																																																										   {
+																																																										     "testCaseId": "TC76",
+																																																										     "scenarioType": "Negative",
+																																																										     "method": "DELETE",
+																																																										     "userFirstName": "John123",
+																																																										     "endpoint": "/deleteuser/username/{userFirstName}",
+																																																										     "expectedStatusCode": 404,
+																																																										     "expectedStatusLine": "Not Found",
+																																																										 	"expectedMessage":"User does not exist with name 'John123'"
+																																																										   },
+																																																										   {
+																																																										     "testCaseId": "TC77",
+																																																										     "scenarioType": "Negative",
+																																																										     "method": "DELETE",
+																																																										     "userFirstName": "usertest@anum!pyz",
+																																																										     "endpoint": "/deleteuser/username/{userFirstName}",
+																																																										     "expectedStatusCode": 404,
+																																																										     "expectedStatusLine": "Not Found",
+																																																										 	"expectedMessage":"User does not exist with name 'usertest@anum!pyz'"
+																																																										   },
+																																																										   {
+																																																										     "testCaseId": "TC78",
+																																																										     "scenarioType": "Positive",
+																																																										     "method": "DELETE",
+																																																										 	"userFirstName": "DUMMY", 
+																																																										     "endpoint": "/deleteuser/username/{userFirstName}",
+																																																										     "expectedStatusCode": 200,
+																																																										     "expectedStatusLine": "OK",
+																																																										     "expectedMessage": "User is deleted successfully"
+																																																										   }
+																																																										   ]
+																																		 
+																																																									 
+																																																									 
+																																																								   
+																																																							   
+																																																								   
+
+																																																								 
+			
+			
+		    
+
+    
+  
+
+
